@@ -3,8 +3,7 @@ services:
   aprsc:
     image: ghcr.io/vntgcode/aprsc-docker:latest
     volumes:
-      - "./aprsc.conf:/aprsc/conf/aprsc.conf:z"
-      - "./data:/aprsc/data"
+      - "./aprsc.conf:/aprsc/aprsc.conf:z"
     ports:
       - 8080:8080
       - 10152:10152
