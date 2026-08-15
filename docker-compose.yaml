@@ -1,0 +1,19 @@
+version: '3'
+services:
+  aprsc:
+    image: ghcr.io/vntgcode/aprsc-docker:latest
+    volumes:
+      - "./aprsc.conf:/aprsc/conf/aprsc.conf:z"
+      - "./data:/aprsc/data"
+    ports:
+      - 8080:8080
+      - 10152:10152
+      - 14501:14501
+      - 14580:14580
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 64M
