@@ -5,6 +5,9 @@ exec 1>&2
 
 CONFIG_FILE="/aprsc/aprsc.conf"
 
+# Check if configuration file exists
+if [ ! -f "$CONFIG_FILE" ]; then
+
 # Environment variables with defaults
 APRSC_SERVER_ID="${APRSC_SERVER_ID:-NOCALL}"
 APRSC_PASSCODE="${APRSC_PASSCODE:--1}"
@@ -37,10 +40,6 @@ APRSC_CLIENT_TIMEOUT="${APRSC_CLIENT_TIMEOUT:-48h}"
 # Resource limits
 APRSC_MAX_CLIENTS="${APRSC_MAX_CLIENTS:-500}"
 APRSC_FILE_LIMIT="${APRSC_FILE_LIMIT:-10000}"
-
-# Check if configuration file exists
-if [ ! -f "$CONFIG_FILE" ]; then
-    # Generate configuration file
 
 cat > "$CONFIG_FILE" << EOF
 
