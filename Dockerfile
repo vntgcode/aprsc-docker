@@ -42,12 +42,17 @@ WORKDIR /aprsc
 # Copy binary from build stage
 COPY --from=builder /src/src/aprsc /usr/sbin/aprsc
 COPY --from=builder /src/src/web /aprsc/web
+COPY entrypoint.sh /aprsc
 
 # Setup configuration directories
 RUN mkdir -p logs data && \
-    chown -R aprsc:aprsc /aprsc 
+    chown -R aprsc:aprsc /aprsc && \
+    chmod 0755 /aprsc/entrypoint.sh
 
 USER aprsc
 
-EXPOSE 14580 10152 8080
+EXPOSE 8080 8080/udp 10152 14501 14580
+
+ENTRYPOINT ["/aprsc/entrypoint.sh"]
+
 CMD ["/usr/sbin/aprsc", "-o", "stderr", "-c", "aprsc.conf"]
