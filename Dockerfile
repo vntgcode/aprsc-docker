@@ -1,21 +1,31 @@
 # --- Stage 1: Build aprsc ---
 FROM debian:trixie-slim AS builder
 
-RUN apt-get update && apt-get install -y \
+ARG APRSC_VERSION=2.1.21
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
+    autoconf \
+    automake \
     libevent-dev \
+    libpopt-dev \
     libssl-dev \
+    zlib1g-dev \
+    ca-certificates \
     git \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /src
-RUN git clone https://github.com/hessu/aprsc.git . && \
+RUN git clone --branch release/${APRSC_VERSION} --depth 1  https://github.com/hessu/aprsc.git . && \
     cd src && \
     ./configure && \
     make
 
 # --- Stage 2: Runtime Environment ---
 FROM debian:trixie-slim
+
+LABEL aprsc.version=${APRSC_VERSION}
+LABEL aprsc.web=http://he.fi/aprsc/
 
 RUN apt-get update && apt-get install -y \
     libevent-2.1-7 \
