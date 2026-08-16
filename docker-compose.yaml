@@ -1,9 +1,7 @@
 version: '3'
 services:
   aprsc:
-    image: ghcr.io/vntgcode/aprsc-docker:latest
-    volumes:
-      - "./aprsc.conf:/aprsc/aprsc.conf:z"
+    image: ghcr.io/vntgcode/aprsc-docker:2.1.21
     ports:
       - 8080:8080
       - 10152:10152
@@ -11,6 +9,11 @@ services:
       - 14580:14580
     security_opt:
       - no-new-privileges:true
+    environment:
+      - APRSC_SERVER_ID=MYCALL
+      - APRSC_PASSCODE=MYAPRSCODE
+      - APRSC_UPLINK_ENABLED=yes
+      - APRSC_MY_ADMIN=My Name, My Call
     deploy:
       resources:
         limits:
