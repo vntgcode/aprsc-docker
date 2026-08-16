@@ -30,7 +30,7 @@ LABEL aprsc.version=${APRSC_VERSION}
 LABEL aprsc.web=http://he.fi/aprsc/
 
 RUN apt-get update && apt-get install -y \
-    libevent \
+    libevent-2.1-7 \
     libssl3 \
     && rm -rf /var/lib/apt/lists/*
 
