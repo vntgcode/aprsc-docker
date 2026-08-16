@@ -27,6 +27,8 @@ FROM debian:trixie-slim
 LABEL aprsc.version=${APRSC_VERSION}
 LABEL aprsc.web=http://he.fi/aprsc/
 
+ARG APRSC_VERSION=2.1.21
+
 RUN apt-get update && apt-get install -y \
     libevent-2.1-7 \
     libssl3 \
