@@ -12,11 +12,14 @@ git clone https://github.com/brannondorsey/aprsc-docker
 cd aprsc-docker
 ```
 
-```bash
-# create an aprsc.conf file using the example. You MUST configure this to fit
-# your needs. Configuration information is available here: 
-#  http://he.fi/aprsc/CONFIGURATION.html
-cp aprsc.conf.example aprsc.conf
+Edit docker-compose.yaml set at least:
+
+```yaml
+    environment:
+      - APRSC_SERVER_ID=MYCALL
+      - APRSC_PASSCODE=MYAPRSCODE
+      - APRSC_UPLINK_ENABLED=yes
+      - APRSC_MY_ADMIN=My Name, My Call
 ```
 
 ```bash
