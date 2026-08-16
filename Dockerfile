@@ -24,13 +24,13 @@ RUN git clone --branch release/${APRSC_VERSION} --depth 1  https://github.com/he
 # --- Stage 2: Runtime Environment ---
 FROM debian:trixie-slim
 
+ARG APRSC_VERSION=2.1.21
+
 LABEL aprsc.version=${APRSC_VERSION}
 LABEL aprsc.web=http://he.fi/aprsc/
 
-ARG APRSC_VERSION=2.1.21
-
 RUN apt-get update && apt-get install -y \
-    libevent-2.1-7 \
+    libevent \
     libssl3 \
     && rm -rf /var/lib/apt/lists/*
 
