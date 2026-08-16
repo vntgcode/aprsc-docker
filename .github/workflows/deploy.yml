@@ -8,15 +8,16 @@ on:
       - 'v*'
   workflow_dispatch:
 
-permissions:
-  contents: read
-  packages: write  # Enables pushing to ghcr.io
+
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}
   APRSC_VERSION: "2.1.21"
   BUILD_REV: "1"
-
+  permissions:
+    contents: read
+    packages: write  # Enables pushing to ghcr.io
+    
 jobs:
   build:
     runs-on: ubuntu-latest
